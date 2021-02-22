@@ -39,9 +39,10 @@ int main() {
 ```
 
 #### 例1 [206. 反转链表 (easy)](https://leetcode-cn.com/problems/reverse-linked-list/)
+
 [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/src/206_ReverseLinkedList.cpp)
 
-
+![](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/pic/pic206.png?raw=true)
 
 #### 例2 链表逆序2 (median)
 
