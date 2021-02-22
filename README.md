@@ -32,7 +32,7 @@ int main() {
 }
 ```
 
-#### 例1 [206反转链表 (easy)](https://leetcode-cn.com/problems/reverse-linked-list/) [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/src/206_ReverseLinkedList.cpp)
+#### 例1 [206反转链表 (easy)](https://leetcode-cn.com/problems/reverse-linked-list/) |  [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/src/206_ReverseLinkedList.cpp)
 
 ```
 输入: 1->2->3->4->5->NULL
@@ -40,7 +40,6 @@ int main() {
 ```
 
 ![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic206.png)
-
 
 ```cpp
 class Solution {
