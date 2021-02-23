@@ -29,7 +29,7 @@ int main() {
 }
 ```
 
-# 例1 [206反转链表 (easy)](https://leetcode-cn.com/problems/reverse-linked-list/) |  [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/src/206_ReverseLinkedList.cpp)
+# 例1 [206反转链表 (easy)](https://leetcode-cn.com/problems/reverse-linked-list/) |  [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/206_ReverseLinkedList.cpp)
 
 ```
 输入: 1->2->3->4->5->NULL
@@ -54,7 +54,7 @@ public:
 }
 ```
 
-# 例2 [92链表逆序2 (median)](https://leetcode-cn.com/problems/reverse-linked-list-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/src/92_ReverseLinkedListII.cpp)
+# 例2 [92链表逆序2 (median)](https://leetcode-cn.com/problems/reverse-linked-list-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/92_ReverseLinkedListII.cpp)
 
 ```
 反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。 1 ≤ m ≤ n ≤ 链表长度。
@@ -105,7 +105,7 @@ public:
 ```
 
 
-# 例3 [160相交链表 (median)](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/src/160_IntersectionOfTwoLinkedLists.cpp)
+# 例3 [160相交链表 (median)](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/160_IntersectionOfTwoLinkedLists.cpp)
 
 ```
 找到两个单链表相交的起始节点
@@ -115,11 +115,29 @@ public:
 输入解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
 ```
 
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic160.png)
+
 ```cpp
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int len_a = get_list_length(headA);
+        int len_b = get_list_length(headB);
+        if (len_a > len_b) {
+            headA = forward_long_list(len_a, len_b, headA);
+        }
+        else {
+            headB = forward_long_list(len_b, len_a, headB);
+        }
         
+        while (headA && headB) {
+            if (headA == headB) {
+                return headA;
+            }
+            headA = headA->next;
+            headB = headB->next;
+        }
+        return NULL;
     }
 };
 ```
