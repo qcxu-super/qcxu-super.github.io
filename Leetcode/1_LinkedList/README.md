@@ -105,7 +105,7 @@ public:
 ```
 
 
-# 例3 [160相交链表 (median)](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/160_IntersectionOfTwoLinkedLists.cpp)
+# 例3 [160相交链表 (easy)](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/160_IntersectionOfTwoLinkedLists.cpp)
 
 ```
 找到两个单链表相交的起始节点
@@ -142,15 +142,230 @@ public:
 };
 ```
 
+# 例4 [142环形链表 II(median)](https://leetcode-cn.com/problems/linked-list-cycle-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/142_LinkedListCycleII.cpp)
 
-# 例4 链表求环 (median)
+```
+给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
 
-# 例5 链表划分 (median)
+为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。
 
-# 例6 复杂链表的复制 (hard)
+如果链表中存在环，则返回 true 。 否则，返回 false 。
 
-# 例7 两个排序链表归并 (easy)
+输入：head = [3,2,0,-4], pos = 1
+输出：true
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
 
-# 例8 K个排序链表归并 (hard)
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic160.png)
+
+```cpp
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *fast = head;
+        ListNode *slow = head;
+        ListNode *meet = NULL;
+        while (fast) {
+            slow = slow->next;
+            fast = fast->next;
+            if (fast == NULL) {
+                return NULL;
+            }
+            fast = fast->next;
+
+            if (slow == fast) {
+                meet = fast;
+                break;
+            }
+        }
+
+        if (meet == NULL) {
+            return NULL;
+        }
+        while (head && meet) {
+            if (head == meet) {
+                return head;
+            }
+            head = head->next;
+            meet = meet->next;
+        }
+        return NULL;
+    }
+};
+```
 
 
+# 例5 [86分隔链表(median)](https://leetcode-cn.com/problems/partition-list/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/86_PartitionList.cpp)
+
+```
+给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
+你应当 保留 两个分区中每个节点的初始相对位置。
+
+输入：head = [1,4,3,2,5,2], x = 3
+输出：[1,2,2,4,3,5]
+```
+
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic86.png)
+
+```cpp
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode less_head(0);
+        ListNode more_head(0);
+        ListNode *less_ptr = &less_head;
+        ListNode *more_ptr = &more_head;
+        while (head) {
+            if (head->val < x) {
+                less_ptr->next = head;
+                less_ptr = less_ptr->next;
+            }
+            else {
+                more_ptr->next = head;
+                more_ptr = more_ptr->next;
+            }
+            head = head->next;
+        }
+        less_ptr->next = more_head.next;
+        more_ptr->next = NULL;
+        return less_head.next;
+    }
+};
+```
+
+
+# 例6 [138复制带随机指针的链表(median)](https://leetcode-cn.com/problems/copy-list-with-random-pointer/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/138_CopyListWithRandomPointer.cpp)
+
+```
+已知一个复杂的链表，节点中有一个指向本链表任意某个节点的随机指针（也可以为空），求这个链表的深度拷贝
+
+输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
+输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]
+```
+
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic138.png)
+
+```cpp
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        std::map<Node*, int> node_map; //{add_old1:No1,add_old2:No2,add_old3:No3...}
+        std::vector<Node*> node_vec; //[add_new1,add_new2,add_new3,...]
+        Node *ptr = head;
+
+        int i = 0;
+        while (ptr) {
+            node_map[ptr] = i;
+            node_vec.push_back(new Node(ptr->val));
+            ptr = ptr->next;
+            i++;
+        }
+        node_vec.push_back(0);
+
+        ptr = head;
+        i = 0;
+        while (ptr) {
+            node_vec[i]->next = node_vec[i+1];
+            if (ptr->random) {
+                int id = node_map[ptr->random];
+                node_vec[i]->random = node_vec[id];
+            }
+            ptr = ptr->next;
+            i++;
+        }
+
+        return node_vec[0];
+    }
+};
+```
+
+# 例7 [21合并两个有序链表(easy)](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/21_MergeTwoSortedLists.cpp)
+
+```
+将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+
+输入：l1 = [1,2,4], l2 = [1,3,4]
+输出：[1,1,2,3,4,4]
+```
+
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic21.png)
+
+```cpp
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode l3(0);
+        ListNode *ptr = &l3;
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                ptr->next = l1;
+                l1 = l1->next;
+            }
+            else {
+                ptr->next = l2;
+                l2 = l2->next;
+            }
+            ptr = ptr->next;
+        }
+        if (l1) {
+            ptr->next = l1;
+        }
+        if (l2) {
+            ptr->next = l2;
+        }
+        return l3.next;
+    }
+};
+```
+
+# 例8 [23合并K个升序链表(hard)](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/23_MergeKSortedLists.cpp)
+
+```
+给你一个链表数组，每个链表都已经按升序排列。
+请你将所有链表合并到一个升序链表中，返回合并后的链表。
+
+输入：lists = [[1,4,5],[1,3,4],[2,6]]
+输出：[1,1,2,3,4,4,5,6]
+```
+
+** 方法1 排序后相连 **
+
+```cpp
+# include <vector>
+# include <algorithm>
+
+bool cmp(const ListNode *a, const ListNode *b) {
+    return a->val < b->val;
+}
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        vector<ListNode*> node_vec;
+        for (int i=0; i<lists.size(); ++i) {
+            ListNode *head = lists[i];
+            while (head) {
+                node_vec.push_back(head);
+                head = head->next;
+            }
+        }
+        if (node_vec.size()==0) {
+            return NULL;
+        }
+
+        sort(node_vec.begin(), node_vec.end(), cmp);
+
+        for (int i=0; i<node_vec.size()-1; ++i) {
+            node_vec[i]->next = node_vec[i+1];
+        }
+        node_vec[node_vec.size()-1]->next = NULL;
+        return node_vec[0];
+    }
+};
+```
+
+** 方法2 分治后相连 **
+
+```cpp
+
+```
