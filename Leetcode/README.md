@@ -1,4 +1,4 @@
-# 1. 链表
+# 1. [链表](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/1_LinkedList)
 
 - 例1 [206反转链表 (easy)](https://leetcode-cn.com/problems/reverse-linked-list/) |  [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/206_ReverseLinkedList.cpp)
 
@@ -15,3 +15,11 @@
 - 例7 [21合并两个有序链表(easy)](https://leetcode-cn.com/problems/merge-two-sorted-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/21_MergeTwoSortedLists.cpp)
 
 - 例8 [23合并K个升序链表(hard)](https://leetcode-cn.com/problems/merge-k-sorted-lists/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/1_LinkedList/23_MergeKSortedLists.cpp)
+
+# 2. [栈、队列、堆](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/2_StackQueueHeap)
+
+- 例1 [225用队列实现栈(easy)](https://leetcode-cn.com/problems/implement-stack-using-queues/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/225_ImplementStackUsingQueues.cpp)
+
+- 例2 [232用栈实现队列(easy)](https://leetcode-cn.com/problems/implement-queue-using-stacks/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/232_ImplementQueueUsingStacks.cpp)
+
+- 例3 [155最小栈(easy)](https://leetcode-cn.com/problems/min-stack/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/155_MinStack.cpp)
