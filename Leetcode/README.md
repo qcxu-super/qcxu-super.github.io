@@ -23,3 +23,8 @@
 - 例2 [232用栈实现队列(easy)](https://leetcode-cn.com/problems/implement-queue-using-stacks/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/232_ImplementQueueUsingStacks.cpp)
 
 - 例3 [155最小栈(easy)](https://leetcode-cn.com/problems/min-stack/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/155_MinStack.cpp)
+
+- 例4 [946验证栈序列(easy)](https://leetcode-cn.com/problems/validate-stack-sequences/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/946_ValidateStackSequences.cpp)
+
+- 例5 [224基本计算器(hard)](https://leetcode-cn.com/problems/basic-calculator/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/224_BasicCalculator.cpp)
+

@@ -169,12 +169,102 @@ private:
 [null,null,null,null,-3,null,0,-2]
 ```
 
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic155.png)
+
+```cpp
+class MinStack {
+public:
+    /** initialize your data structure here. */
+    MinStack() {
+
+    }
+    
+    void push(int x) {
+        _data.push(x);
+        if (_min.empty()) {
+            _min.push(x);
+        } 
+        else if (_min.top() >= x) {
+            _min.push(x);
+        }
+        else {
+            _min.push(_min.top());
+        }
+    }
+    
+    void pop() {
+        _data.pop();
+        _min.pop();
+    }
+    
+    int top() {
+        return _data.top();
+    }
+    
+    int getMin() {
+        return _min.top();
+    }
+private:
+    std::stack<int> _data;
+    std::stack<int> _min;
+};
+```
+
+
+# 例4 [946验证栈序列(median)](https://leetcode-cn.com/problems/validate-stack-sequences/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/946_ValidateStackSequences.cpp)
+
+```
+给定 pushed 和 popped 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。
+
+输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+输出：true
+```
+
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic946.png)
+
+```cpp
+class Solution {模拟入栈出栈过程。跟括号匹配是同一类问题
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int> popped) {
+        queue<int> s_popped;
+        if (pushed.size() != popped.size()) {
+            return false;
+        }
+        int n = pushed.size();
+        for (int i=0; i<n; ++i) {
+            s_popped.push(popped[i]);
+        }
+
+        stack<int> s;
+        for (int i=0; i<n; ++i) {
+            s.push(pushed[i]);
+            while (!s.empty() && s.top() == s_popped.front()) {
+                s.pop();
+                s_popped.pop();
+            }
+        }
+        if (s.empty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+};
+```
+
+
+# 例5 [224基本计算器(hard)](https://leetcode-cn.com/problems/basic-calculator/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/224_BasicCalculator.cpp)
+
+```
+实现一个基本的计算器来计算一个简单的字符串表达式 s 的值。
+
+输入：s = "(1+(4+5+2)-3)+(6+8)"
+输出：23
+```
 
 
 
-# 例4 合法的出栈序列
-
-# 例5 简单的计算器
 
 # 例6 数组中第K大的数
 
