@@ -28,3 +28,9 @@
 
 - 例5 [224基本计算器(hard)](https://leetcode-cn.com/problems/basic-calculator/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/224_BasicCalculator.cpp)
 
+- 例6 [215数组中的第K个最大元素(median)](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/215_KthLargestElementInAnArray.cpp)
+
+- 例7 [295数据流的中位数(hard)](https://leetcode-cn.com/problems/find-median-from-data-stream/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/295_FindMedianFromDataStream.cpp)
+
+# 3. [贪心算法](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/3_GreedyAlgorithm)
+

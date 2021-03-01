@@ -51,6 +51,36 @@ int main() {
 
 ```
 
+# 堆基础
+
+```cpp
+#include <stdio.h>
+#include <queue>
+
+int main() {
+    std::priority_queue<int> big_heap;
+    if (big_heap.empty()) { // heap.empty()
+        printf("big_heap is empty")
+    }
+
+    int test[] = {6,10,1,7,99,4,33};
+    for (int i=0; i<7; ++i) {
+        big_heap.push(test[i]); //heap.push()
+    }
+    printf("big_heap.top=%d\n",big_heap.top()); // heap.top()=99
+
+    big_heap.push(1000); // heap.push()
+    printf("big_heap.top=%d\n",big_heap.top()); // heap.top()=1000
+
+    for (int i=0; i<3; ++i) {
+        big_heap.pop() // heap.pop()
+    }
+    printf("big_heap.top=%d\n",big_heap.top()); // heap.top()=10
+    print("big_heap.size=%d\n",big_heap.size()); // heap.size()=5
+    return 0;
+}
+```
+
 # 例1 [225用队列实现栈(easy)](https://leetcode-cn.com/problems/implement-stack-using-queues/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/225_ImplementStackUsingQueues.cpp)
 
 ```
@@ -256,6 +286,7 @@ public:
 
 # 例5 [224基本计算器(hard)](https://leetcode-cn.com/problems/basic-calculator/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/224_BasicCalculator.cpp)
 
+
 ```
 实现一个基本的计算器来计算一个简单的字符串表达式 s 的值。
 
@@ -263,10 +294,119 @@ public:
 输出：23
 ```
 
+[官方题解](https://leetcode-cn.com/problems/basic-calculator/solution/ji-ben-ji-suan-qi-by-leetcode/)
+
+思路：
+- res，完整数字
+- +/- 更新符号
+- `(` 则把当前结果 res 和 符号入栈,
+- `)` 则取出符号乘以当前结果 res，再取出res并累加
 
 
+# 例6 [215数组中的第K个最大元素(median)](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/215_KthLargestElementInAnArray.cpp)
 
-# 例6 数组中第K大的数
+```
+在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
 
-# 例7 寻找中位数
+输入: [3,2,1,5,6,4] 和 k = 2
+输出: 5
+```
 
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic215.png)
+
+```cpp
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        std::priority_queue<int, std::vector<int>, std::greater<int> > q;
+        for (int i=0; i<nums.size(); ++i) {
+            if (q.size() < k) {
+                q.push(nums[i]);
+            }
+            else if (q.top() < nums[i]) {
+                q.pop();
+                q.push(nums[i]);
+            }
+        }
+        return q.top();
+    }
+};
+```
+
+
+# 例7 [295数据流的中位数(hard)](https://leetcode-cn.com/problems/find-median-from-data-stream/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/2_StackQueueHeap/295_FindMedianFromDataStream.cpp)
+
+```
+中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。
+
+设计一个支持以下两种操作的数据结构：
+
+void addNum(int num) - 从数据流中添加一个整数到数据结构中。
+double findMedian() - 返回目前所有元素的中位数。
+
+输入输出:
+addNum(1)
+addNum(2)
+findMedian() -> 1.5
+addNum(3) 
+findMedian() -> 2
+```
+
+![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic295.png)
+
+```cpp
+class MedianFinder {
+public:
+    std::priority_queue<int, std::vector<int>, std::less<int> > big_heap;
+    std::priority_queue<int, std::vector<int>, std::greater<int> > small_heap;
+    
+    MedianFinder() {
+        
+    }
+
+    void addNum(int num) {
+        if (big_heap.empty()) {
+            big_heap.push(num);
+            return;
+        }
+        // big_heap.size() == small_heap.size()
+        if (big_heap.size() == small_heap.size() && num < small_heap.top()) {
+            big_heap.push(num);
+        }
+        else if (big_heap.size() == small_heap.size() && num >= small_heap.top()) {
+            small_heap.push(num);
+        }
+        // big_heap.size() < small_heap.size()
+        else if (big_heap.size() < small_heap.size() && num >= small_heap.top()) {
+            big_heap.push(small_heap.top());
+            small_heap.pop();
+            small_heap.push(num);
+        }
+        else if (big_heap.size() < small_heap.size() && num < small_heap.top()) {
+            big_heap.push(num);
+        }
+        // big_heap.size() > small_heap.size(), small heap may be NULL
+        else if (big_heap.size() > small_heap.size() && num > big_heap.top()) {
+            small_heap.push(num);
+        }
+        else if (big_heap.size() > small_heap.size() && num <= big_heap.top()) {
+            small_heap.push(big_heap.top());
+            big_heap.pop();
+            big_heap.push(num);
+        }
+    }
+
+    double findMedian() {
+        if (big_heap.size() == small_heap.size()) {
+            return 1.0 * (big_heap.top() + small_heap.top())/2;
+        }
+        else if (big_heap.size() > small_heap.size()) {
+            return big_heap.top();
+        }
+        else {
+            return small_heap.top();
+        }
+    }
+};
+
+```
