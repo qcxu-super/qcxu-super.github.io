@@ -34,3 +34,5 @@
 
 # 3. [贪心算法](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/3_GreedyAlgorithm)
 
+- 例1 [455分发饼干(easy) - 排序+贪心](https://leetcode-cn.com/problems/assign-cookies/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/455_AssignCookies.cpp)
+
