@@ -36,3 +36,8 @@
 
 - 例1 [455分发饼干(easy) - 排序+贪心](https://leetcode-cn.com/problems/assign-cookies/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/455_AssignCookies.cpp)
 
+- 例2 [376摆动序列(median) - 贪心](https://leetcode-cn.com/problems/wiggle-subsequence/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/376_WigglSubsequence.cpp)
+
+- 例3 [402移掉K位数字(median) - 栈+贪心](https://leetcode-cn.com/problems/remove-k-digits/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/402_RemoveKDigits.cpp)
+
+- 例4 [55跳跃游戏(median) - 贪心](https://leetcode-cn.com/problems/jump-game/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/55_JumpGame.cpp)

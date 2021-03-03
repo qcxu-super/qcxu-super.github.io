@@ -1,6 +1,19 @@
+#include <vector>
+#include <algorithm>
+
 class Solution {
 public:
-	int findContentChildren (vector<int>& g, vector<int>& s) {
-
-	}
+    int findContentChildren (vector<int>& g, vector<int>& s) { //g:child. s:cookie
+        std::sort(g.begin(), g.end());
+        std::sort(s.begin(), s.end());
+        int child = 0;
+        int cookie = 0;
+        while (child < g.size() && cookie < s.size()) {
+            if (g[child] <= s[cookie]) {
+                ++child;
+            }
+            ++cookie;
+        }
+        return child;
+    }
 };

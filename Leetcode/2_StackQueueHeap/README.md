@@ -92,7 +92,7 @@ int main() {
 [null, null, null, 2, 2, false]
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic225.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic225.png)
 
 ```cpp
 class MyStack {
@@ -145,7 +145,7 @@ private:
 [null, null, null, 1, 1, false]
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic232.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic232.png)
 
 ```cpp
 class MyQueue {
@@ -199,7 +199,7 @@ private:
 [null,null,null,null,-3,null,0,-2]
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic155.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic155.png)
 
 ```cpp
 class MinStack {
@@ -250,7 +250,7 @@ private:
 输出：true
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic946.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic946.png)
 
 ```cpp
 class Solution {模拟入栈出栈过程。跟括号匹配是同一类问题
@@ -312,7 +312,7 @@ public:
 输出: 5
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic215.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic215.png)
 
 ```cpp
 class Solution {
@@ -352,7 +352,7 @@ addNum(3)
 findMedian() -> 2
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic295.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic295.png)
 
 ```cpp
 class MedianFinder {

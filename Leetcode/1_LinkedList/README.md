@@ -36,7 +36,7 @@ int main() {
 输出: 5->4->3->2->1->NULL
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic206.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic206.png)
 
 ```cpp
 class Solution {
@@ -63,9 +63,9 @@ public:
 输出: 1->4->3->2->5->NULL
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic92_1.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic92_1.png)
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic92_2.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic92_2.png)
 
 ```cpp
 class Solution {
@@ -115,7 +115,7 @@ public:
 输入解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic160.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic160.png)
 
 ```cpp
 class Solution {
@@ -156,7 +156,7 @@ public:
 解释：链表中有一个环，其尾部连接到第二个节点。
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic160.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic160.png)
 
 ```cpp
 class Solution {
@@ -205,7 +205,7 @@ public:
 输出：[1,2,2,4,3,5]
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic86.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic86.png)
 
 ```cpp
 class Solution {
@@ -243,7 +243,7 @@ public:
 输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic138.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic138.png)
 
 ```cpp
 class Solution {
@@ -288,7 +288,7 @@ public:
 输出：[1,1,2,3,4,4]
 ```
 
-![image](https://gitee.com/XuQincheng/img-bed/raw/master/Leetcode/pic21.png)
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic21.png)
 
 ```cpp
 class Solution {
