@@ -49,13 +49,13 @@ int main() {
 所以你应该输出2.
 ```
 
-#### 1. 规律
+#### 规律
 - 如果一块小饼干不能满足最小需求孩子，那么更大需求的孩子也不可能满足
 - 如果一个孩子能被更小饼干满足，那么没必要用更大的饼干去满足。留着更大的饼干去满足需求因子更大的孩子
 - 所以从需求因子小的孩子身上开始试。因为我们要的是满足的孩子尽可能多，那么把饼干8满足需求2的孩子和需求6的孩子，其实是一样的
 
 
-#### 2. 解题思路
+#### 解题思路
 - 对饼干大小排序，对孩子需求排序。从小到大。
 - 依次遍历所有饼干。只需要遍历一次。如果能满足当前孩子，那就满足了。如果不能满足当前孩子，那之后需求更大的孩子也不可能用这块饼干满足，所以这块饼干就废了
 - 如果上一块饼干满足了孩子的需求，则下一块饼干，下一个孩子。如果上一块饼干没有满足孩子的需求，则上一块饼干废，到下一块饼干，还是这个孩子
@@ -217,7 +217,7 @@ public:
 #### 解题思路
 
 - 递归的规律是，`reach_index <= i + nums[i]`
-- 之所以是`<=`，是因为`nums[i]`代表了在该位置可以跳跃的最大长度，这样后面可选择的范围更大，更可能跳跃到终点 。`reach_index_max = i+nums[i]`
+- 之所以是`<=`，是因为`nums[i]`代表了在该位置可以跳跃的最大长度，这样后面可选择的范围更大，更可能跳跃到终点 。`reach_index_max = i + nums[i]`
 - 所以当`reach_index_max >= i`的时候，说明i是可达到的，`跳跃步数 = reach_index_max - i < reach_index_max`
 
 ```cpp
@@ -311,7 +311,7 @@ public:
 
 ![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic452_2.png)
 
-所以解题步骤如下：
+#### 所以解题步骤如下：
 
 - 对气球按左端点从小到大进行排序
 - 遍历各气球数组，同时维护一个射击区间。每遍历一个气球，满足：在可以击穿当前气球的情况下，击穿尽可能多的其他气球。每击穿一个新的气球，更新一次射击区间
@@ -370,12 +370,13 @@ public:
 
 #### 解题思路
 
-- 何时加油最合适？油用光的时候加油最合适！在哪个加油站加油最合适？在油量最多的加油站加油最合适！
+- 何时加油最合适？油用光的时候加油最合适！
+- 在哪个加油站加油最合适？在油量最多的加油站加油最合适！
 - 怎么快速得到加油油量最大值？用最大堆！
 
 ![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic871.png)
 
-所以解题步骤如下：
+#### 所以解题步骤如下：
 
 - 设置一个最大堆，用来存储经过加油站的汽油量
 - 按照从起点至终点的方向，遍历各个加油站之间的距离
@@ -393,7 +394,7 @@ bool cmp(const vector<int>& a, const vector<int>& b) {
 
 class Solution {
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) { // distance,fuelnum
+    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
 
         if (stations.size() == 0 && startFuel < target) {
             return -1;

@@ -8,7 +8,7 @@ bool cmp(const vector<int>& a, const vector<int>& b) {
 
 class Solution {
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) { // distance,fuelnum
+    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
 
         if (stations.size() == 0 && startFuel < target) {
             return -1;
