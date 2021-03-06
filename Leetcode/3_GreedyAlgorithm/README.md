@@ -214,8 +214,45 @@ public:
 解释：无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ， 所以永远不可能到达最后一个下标。
 ```
 
+#### 解题思路
+
+- 递归的规律是，reach_index<=i+nums[i]
+- 之所以是<=，是因为nums[i]代表了在该位置可以跳跃的最大长度，这样后面可选择的范围更大，更可能跳跃到终点 。reach_index_max=i+nums[i]
+- 所以当reach_index_max>=i的时候，说明i是可达到的，跳跃步数=reach_index_max-i<reach_index_max
+
+```cpp
+class Solution {
+public:
+    bool canJump(std::vector<int>& nums) {
+        int reach = 0;
+        for (int i=0; i<nums.size(); ++i) {
+            if (reach < i) {
+                return false;
+            }
+            else {
+                reach = max(reach, i+nums[i]);
+            }
+        }
+        return true;
+    }
+};
+```
 
 
-# 例5 射击气球（排序+贪心）
+# 例5 [45跳跃游戏II(hard) - 贪心](https://leetcode-cn.com/problems/jump-game-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/45_JumpGameII.cpp)
+
+```cpp
+给定一个非负整数数组，你最初位于数组的第一个位置。
+
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+
+你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+
+输入: [2,3,1,1,4]
+输出: 2
+```
+
+
+# 例6 射击气球（排序+贪心）
   
-# 例6 最优加油方法（堆+贪心）
+# 例7 最优加油方法（堆+贪心）
