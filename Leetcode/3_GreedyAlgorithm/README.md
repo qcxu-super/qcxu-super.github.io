@@ -384,14 +384,6 @@ public:
 - 如果把最大堆中的汽油全部都添加了，仍然不够前进距离d，则无法到达终点
 
 ```cpp
-#include <vector>
-#include <algorithm>
-#include <queue>
-
-bool cmp(const vector<int>& a, const vector<int>& b) {
-    return a[0] < b[0];
-}
-
 class Solution {
 public:
     int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
