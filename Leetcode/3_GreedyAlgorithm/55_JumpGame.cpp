@@ -7,9 +7,9 @@ public:
                 return false;
             }
             else {
-                reach = max(reach, i+nums[i])
+                reach = max(reach, i+nums[i]);
             }
         }
         return true;
     }
-}
+};

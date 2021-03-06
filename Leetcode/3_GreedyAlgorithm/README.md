@@ -18,18 +18,18 @@
 #include <studio.h>
 
 int main() {
-	const int RMB[] = {200,100,20,10,5,1};
-	const int NUM = 6; // count(ditinct RMB)
-	int X = 628;
-	int count = 0;
-	for (int i=0; i<NUM; ++i) {
-		int use = X / RMB[i];
-		count += use;
-		X -= RMB[i] * use;
-		printf("需要面额为%d的%d张，剩余需要支付金额%d\n", RMB[i], use, X);
-	}
-	printf("总共需要%d张", count);
-	return 0;
+    const int RMB[] = {200,100,20,10,5,1};
+    const int NUM = 6; // count(ditinct RMB)
+    int X = 628;
+    int count = 0;
+    for (int i=0; i<NUM; ++i) {
+        int use = X / RMB[i];
+        count += use;
+        X -= RMB[i] * use;
+        printf("需要面额为%d的%d张，剩余需要支付金额%d\n", RMB[i], use, X);
+    }
+    printf("总共需要%d张", count);
+    return 0;
 }
 ```
 
@@ -216,9 +216,9 @@ public:
 
 #### 解题思路
 
-- 递归的规律是，reach_index<=i+nums[i]
-- 之所以是<=，是因为nums[i]代表了在该位置可以跳跃的最大长度，这样后面可选择的范围更大，更可能跳跃到终点 。reach_index_max=i+nums[i]
-- 所以当reach_index_max>=i的时候，说明i是可达到的，跳跃步数=reach_index_max-i<reach_index_max
+- 递归的规律是，`reach_index <= i + nums[i]`
+- 之所以是`<=`，是因为`nums[i]`代表了在该位置可以跳跃的最大长度，这样后面可选择的范围更大，更可能跳跃到终点 。`reach_index_max = i+nums[i]`
+- 所以当`reach_index_max >= i`的时候，说明i是可达到的，`跳跃步数 = reach_index_max - i < reach_index_max`
 
 ```cpp
 class Solution {
@@ -241,7 +241,7 @@ public:
 
 # 例5 [45跳跃游戏II(hard) - 贪心](https://leetcode-cn.com/problems/jump-game-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/45_JumpGameII.cpp)
 
-```cpp
+```
 给定一个非负整数数组，你最初位于数组的第一个位置。
 
 数组中的每个元素代表你在该位置可以跳跃的最大长度。
@@ -253,6 +253,192 @@ public:
 ```
 
 
-# 例6 射击气球（排序+贪心）
+#### 解题思路
+
+- 同上。向`i + nums[i]`最大的那个节点跳跃，这样就可以跳到一个可以达到更远位置的位置，这样才能跳的最少
+- 举个例子。例如，对于数组 [2,3,1,2,4,2,3]，初始位置是下标 0，从下标 0 出发，最远可到达下标 2。下标 0 可到达的位置中，下标 1 的值是 3，从下标 1 出发可以达到更远的位置，因此第一步到达下标 1。从下标 1 出发，最远可到达下标 4。下标 1 可到达的位置中，下标 4 的值是 4 ，从下标 4 出发可以达到更远的位置，因此第二步到达下标 4。
+
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic45.png)
+
+```cpp
+class Solution {
+public:
+    int jump(std::vector<int>& nums) {
+        int step = 0;
+        for (int i = 0; i < nums.size()-1; ++i) { // the last one does not need to jump
+            if (i+nums[i] >= nums.size()-1) { // [2,3,1], 0+2=2
+                ++step;
+                break;
+            }
+            int max_step = nums[i];
+            int expect_max_index = i;
+            int expect_current_index = i;
+            int best_index = i;
+            for (int idx = i + 1; idx <= i + max_step && idx < nums.size(); ++idx) {
+                expect_current_index = idx + nums[idx];
+                if (expect_current_index >= expect_max_index) {
+                    expect_max_index = expect_current_index;
+                    best_index = idx;
+                }
+            }
+            i = best_index - 1; // because next ++i
+            ++step;
+        }
+        return step; 
+    }
+};
+```
+
+
+# 例6 [452用最少数量的箭引爆气球(median) - 排序+贪心](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/452_MinimumNumberOfArrowsToBurstBalloons.cpp)
+
+```
+已知在一个平面上有一定数量的气球，平面可以看做一个坐标系，在平面的x轴的不同位置安排弓箭手向y轴方向射箭，弓箭可以向y轴走无穷远。
+
+给定气球宽度 xstart <= x <= xend，问至少需要多少弓箭手，将全部气球引爆
+
+输入：points = [[10,16],[2,8],[1,6],[7,12]]
+输出：2
+解释：对于该样例，x = 6 可以射爆 [2,8],[1,6] 两个气球，以及 x = 11 射爆另外两个气球
+```
+
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic452_1.png)
+
+#### 解题思路
+
+- 对于某个气球，至少需要使用1只弓箭将其击穿
+- 在这只气球被击穿的同时，尽可能击穿其他更多的气球。这样就可以尽可能少地使用弓箭
+
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic452_2.png)
+
+所以解题步骤如下：
+
+- 对气球按左端点从小到大进行排序
+- 遍历各气球数组，同时维护一个射击区间。每遍历一个气球，满足：在可以击穿当前气球的情况下，击穿尽可能多的其他气球。每击穿一个新的气球，更新一次射击区间
+- 如果新的气球无法在遍历别的气球是被带着击穿，则增加一个弓箭手。即遍历该新的气球，重新维护一个新的射击区间，重复上述遍历原则
+
+```cpp
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+        if (points.size() == 0) {
+            return 0;
+        }
+
+        std::sort(points.begin(), points.end(), cmp);
+
+        int shoot_num = 1;
+        int shoot_begin = points[0][0];
+        int shoot_end = points[0][1];
+        for (int i=1; i<points.size(); ++i) {
+            if (points[i][0] <= shoot_end) {
+                shoot_begin = points[i][0];
+                if (shoot_end > points[i][1]) {
+                    shoot_end = points[i][1];
+                }
+            }
+            else {
+                ++shoot_num;
+                shoot_begin = points[i][0];
+                shoot_end = points[i][1];
+            }
+        }
+        return shoot_num;
+    }
+};
+```
   
-# 例7 最优加油方法（堆+贪心）
+# 例7 [871最低加油次数(hard) - 堆+贪心](https://leetcode-cn.com/problems/minimum-number-of-refueling-stops/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/871_MinimumNumberOfRefuelingStops.cpp)
+
+```
+汽车从起点出发驶向目的地，该目的地位于出发位置东面 target 英里处。
+
+沿途有加油站，每个 station[i] 代表一个加油站，它位于出发位置东面 station[i][0] 英里处，并且有 station[i][1] 升汽油。
+
+假设汽车油箱的容量是无限的，其中最初有 startFuel 升燃料。它每行驶 1 英里就会用掉 1 升汽油。
+
+当汽车到达加油站时，它可能停下来加油，将所有汽油从加油站转移到汽车中。
+
+为了到达目的地，汽车所必要的最低加油次数是多少？如果无法到达目的地，则返回 -1 。
+
+注意：如果汽车到达加油站时剩余燃料为 0，它仍然可以在那里加油。如果汽车到达目的地时剩余燃料为 0，仍然认为它已经到达目的地。
+
+
+输入：target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]
+输出：2
+```
+
+#### 解题思路
+
+- 何时加油最合适？油用光的时候加油最合适！在哪个加油站加油最合适？在油量最多的加油站加油最合适！
+- 怎么快速得到加油油量最大值？用最大堆！
+
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic871.png)
+
+所以解题步骤如下：
+
+- 设置一个最大堆，用来存储经过加油站的汽油量
+- 按照从起点至终点的方向，遍历各个加油站之间的距离
+- 每次需要走两个加油站之间的距离d，如果发现汽油不够走距离d时，从最大堆中取出一个油量添加，直到可以足够走距离d
+- 如果把最大堆中的汽油全部都添加了，仍然不够前进距离d，则无法到达终点
+
+```cpp
+#include <vector>
+#include <algorithm>
+#include <queue>
+
+bool cmp(const vector<int>& a, const vector<int>& b) {
+    return a[0] < b[0];
+}
+
+class Solution {
+public:
+    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) { // distance,fuelnum
+
+        if (stations.size() == 0 && startFuel < target) {
+            return -1;
+        }
+
+        std::sort(stations.begin(), stations.end(), cmp);
+
+        std::priority_queue<int> big_heap;
+        int result = 0;
+        int total = target;
+
+        // each station
+        for (int i = 0; i < stations.size(); ++i) {
+            int dist = stations[i][0]; // start--station
+            int feul = stations[i][1];
+
+            int distance = target - (total-dist); // start--station1--station2--end, target:station1--end, dist:start--station2, total:start--end
+            
+            startFuel -= distance;
+            while (startFuel < 0) {
+                if (big_heap.empty()) {
+                    return -1;
+                }
+                startFuel += big_heap.top();
+                big_heap.pop();
+                ++result;
+            }
+            target -= distance;
+            big_heap.push(feul);
+        }
+
+        // last_station--end
+        if (target > 0) {
+            startFuel -= target;
+            while (startFuel < 0) {
+                if (big_heap.empty()) {
+                    return -1;
+                }
+                startFuel += big_heap.top();
+                big_heap.pop();
+                ++result;
+            }
+        }
+
+        return result;
+    }
+};
+```

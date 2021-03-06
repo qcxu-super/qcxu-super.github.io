@@ -41,3 +41,10 @@
 - 例3 [402移掉K位数字(median) - 栈+贪心](https://leetcode-cn.com/problems/remove-k-digits/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/402_RemoveKDigits.cpp)
 
 - 例4 [55跳跃游戏(median) - 贪心](https://leetcode-cn.com/problems/jump-game/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/55_JumpGame.cpp)
+
+- 例5 [45跳跃游戏II(hard) - 贪心](https://leetcode-cn.com/problems/jump-game-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/45_JumpGameII.cpp)
+
+- 例6 [452用最少数量的箭引爆气球(median) - 排序+贪心](https://leetcode-cn.com/problems/minimum-number-of-arrows-to-burst-balloons/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/452_MinimumNumberOfArrowsToBurstBalloons.cpp)
+ 
+- 例7 [871最低加油次数(hard) - 堆+贪心](https://leetcode-cn.com/problems/minimum-number-of-refueling-stops/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/3_GreedyAlgorithm/871_MinimumNumberOfRefuelingStops.cpp)
+

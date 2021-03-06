@@ -59,6 +59,7 @@ int main() {
 
 int main() {
     std::priority_queue<int> big_heap;
+    // std::priority_queue<int, std::vector<int>, std::less<int> > big_heap;
     if (big_heap.empty()) { // heap.empty()
         printf("big_heap is empty")
     }
