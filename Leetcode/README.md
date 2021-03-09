@@ -50,3 +50,6 @@
 
 # 4. [递归、回溯与分治](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/4_Recursive)
 
+- 例1 [78子集(median)](https://leetcode-cn.com/problems/subsets/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/78_Subsets.cpp)
+
+- 例2 [90子集 II(median)](https://leetcode-cn.com/problems/subsets-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/90_SubsetsII.cpp)

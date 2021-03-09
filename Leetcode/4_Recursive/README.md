@@ -163,7 +163,7 @@ int main() {
 输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 ```
 
-#### 解题思路
+#### 解题思路1 回溯法
 
 - 利用回溯法生成子集，就是说，对每个元素，都有试探放入或不放入集合，这两种选择
 - 选择放入该元素，递归进行后续元素的选择，完成放入该元素后续所有元素的试探
@@ -171,11 +171,93 @@ int main() {
 - 选择一次放入，再选择一次不放入，这个过程就是回溯法
 
 
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic78.png)
+
+- 红色部分是第一次递归调用（放），蓝色部分是pop出来第二次递归调用（不放）
+- 是暴力解算的方法之一
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> result;
+        vector<int> item;
+        result.push_back(item);
+        generate(0,nums,item,result);
+        return result;
+    }
+private:
+    void generate(int i, vector<int>& nums, vector<int>& item, vector<vector<int>>& result) {
+        if (i >= nums.size()) {
+            return;
+        }
+        item.push_back(nums[i]); // put nums[i]
+        result.push_back(item);
+        generate(i+1, nums, item, result);
+        item.pop_back(); // not put nums[i]
+        generate(i+1, nums, item, result);
+    }
+};
+```
+
+#### 解题思路2 位运算法
+
+- A:100, B:010, C:001
+
+subset | value | A | B | C
+---|---|---|---|---
+{} | 000=0 | 0=100&000 | 0=010&000 | 0=001&000
+{C} | 001=1 | 0=100&001 | 0=010&001 | 1=001&001
+{B} | 010=2 | 0=100&010 | 1=010&010 | 0=001&010
+{B,C} | 011=3 | 0=100&011 | 1=010&011 | 1=001&011
+{A} | 100=4 | 1=100&100 | 0=010&100 | 0=001&100
+{A,C} | 101=5 | 1=100&101 | 0=010&101 | 1=001&101
+{A,B} | 110=6 | 1=100&110 | 1=010&110 | 0=001&110
+{A,B,C} | 111=7 | 1=100&111 | 1=010&111 | 1=001&111
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> result;
+        int all_set = 1<<nums.size(); // 2^n. 0001<<3=1000=8=2^3
+        for (int i=0; i<all_set; ++i) {
+            vector<int> item;
+            for (int j=0; j<nums.size(); ++j) {
+                if (i & (1<<j)) { //0:001,1:010,2:100
+                    item.push_back(nums[j]);
+                }
+            }
+            result.push_back(item);
+        }
+        return result;
+    }
+};
+```
+
+# 例2 [90子集 II(median)](https://leetcode-cn.com/problems/subsets-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/90_SubsetsII.cpp)
+
+```
+给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+
+说明：解集不能包含重复的子集。
+
+输入: [1,2,2]
+输出:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+```
 
 
 
-# 例2 生成括号
+# 例3 生成括号
 
-# 例3 N皇后问题
+# 例4 N皇后问题
 
-# 例4 逆序数
+# 例5 逆序数
