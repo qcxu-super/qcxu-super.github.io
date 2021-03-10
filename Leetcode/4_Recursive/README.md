@@ -235,7 +235,7 @@ public:
 };
 ```
 
-# 例2 [90子集 II(median)](https://leetcode-cn.com/problems/subsets-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/90_SubsetsII.cpp)
+# 例2 [90子集II(median)](https://leetcode-cn.com/problems/subsets-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/90_SubsetsII.cpp)
 
 ```
 给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
@@ -254,10 +254,105 @@ public:
 ]
 ```
 
+#### 解题思路
+
+- vector不能重复。用set对vector进行去重
+
+```
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> result;
+        vector<int> item;
+        set<vector<int>> res_set;
+        sort(nums.begin(), nums.end());
+        result.push_back(item);
+        generate(0,nums,result,item,res_set);
+        return result;
+    }
+private:
+    void generate(int i, vector<int>& nums, vector<vector<int>>& result, vector<int>& item, set<vector<int>>& res_set) {
+        if (i >= nums.size()) {
+            return;
+        }
+        item.push_back(nums[i]);
+        if (res_set.find(item) == res_set.end()) { // not find in set
+            result.push_back(item);
+            res_set.insert(item);
+        }
+        generate(i+1, nums, result, item, res_set); // put nums[i]
+        item.pop_back();
+        generate(i+1, nums, result, item, res_set); // not put nums[i]
+    }
+};
+```
+
+# 例3 [40组合总和II(median)](https://leetcode-cn.com/problems/combination-sum-ii/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/40_CombinationSumII.cpp)
+
+```
+给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
+
+candidates 中的每个数字在每个组合中只能使用一次。
+
+输入: candidates = [10,1,2,7,6,1,5], target = 8,
+所求解集为:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+```
+
+#### 解题思路
+
+- 当选择某几个元素，之和>target时，就不用再往下递归了。这个过程叫剪枝。可以大幅度提升效率
+- 剪枝在深度搜索里面非常常用
+
+![image](https://gitee.com/journey7878/img-bed/raw/master/Leetcode/pic40.png)
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        vector<int> item;
+        set<vector<int>> res_set;
+        sort(candidates.begin(),candidates.end());
+        generate(0,candidates,result,item,res_set,0,target);
+        return result;
+    }
+
+    void generate(int i, vector<int>& nums, vector<vector<int>>& result, vector<int>& item, set<vector<int>>& res_set, int sum, int target) {
+        if (i >= nums.size() || sum > target) {
+            return;
+        }
+        sum += nums[i];
+        item.push_back(nums[i]);
+        if (sum == target && res_set.find(item) == res_set.end()) {
+            result.push_back(item);
+            res_set.insert(item);
+        }
+        generate(i+1, nums, result, item, res_set, sum, target);
+        sum -= nums[i];
+        item.pop_back();
+        generate(i+1, nums, result, item, res_set, sum, target);
+    }
+
+};
+```
 
 
-# 例3 生成括号
+# 例4 [22括号生成(median)](https://leetcode-cn.com/problems/generate-parentheses/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/4_Recursive/22_GenerateParentheses.cpp)
 
-# 例4 N皇后问题
+```
+数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
 
-# 例5 逆序数
+输入：n = 3
+输出：["((()))","(()())","(())()","()(())","()()()"]
+```
+
+
+# 例5 N皇后问题
+
+# 例6 逆序数

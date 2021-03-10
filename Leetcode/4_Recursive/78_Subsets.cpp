@@ -1,3 +1,4 @@
+// method 1
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
@@ -21,6 +22,7 @@ private:
 };
 
 
+// method 2
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
