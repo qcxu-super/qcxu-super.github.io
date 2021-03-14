@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
-title: 写着玩玩
-description: just write
+deploy:
+    type: git
+    repository: https://github.com/qcxu-super/qcxu-super.github.io.git
+    branch: master
