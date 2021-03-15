@@ -32,7 +32,7 @@ num = 40 // error
 
 ```scala
 def sayHello: Nothing {
-    throw new Exception('error')
+    throw new Exception("error")
 }
 ```
 
@@ -523,7 +523,7 @@ oper match {
     case '-' => res = n1 - n2
     case '*' => res = n1 * n2
     case '/' => res = n1 / n2
-    case _ => println('oper error') //oper error
+    case _ => println("oper error") //oper error
 }
 
 println("res = " + res) //0
