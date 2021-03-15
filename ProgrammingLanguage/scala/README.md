@@ -122,7 +122,7 @@ a ^ b
 
 ## 3.2 分支控制
 
-#### 单分支
+### 单分支
 
 ```scala
 import scala.io._
@@ -133,7 +133,7 @@ if (age > 18) {
 }
 ```
 
-#### 双分支
+### 双分支
 
 - if ... else ...
 
@@ -151,7 +151,7 @@ if (age > 18) {
 var res = if (a > b) a else b
 ```
 
-#### 多分支
+### 多分支
 
 ```scala
 val  score = StdIn.readDouble()
@@ -164,13 +164,13 @@ if (score == 100) {
 }
 ```
 
-#### switch模式匹配
+### switch模式匹配
 
 match-case
 
 ## 3.3 循环控制
 
-#### for循环
+### for循环
 
 - to：前闭后闭
 
@@ -268,7 +268,7 @@ for (i <- 1 to 5; i % 2 == 1) {
 }
 ```
 
-#### 循环中断
+### 循环中断
 
 breakable 是个高阶函数，就是说，可以接受函数(op)的函数。breakable()，小括号变大括号
 
@@ -297,7 +297,7 @@ seq, set, map
 
 ## 4.1 Array 定长数组
 
-#### 固定类型
+### 固定类型
 
 ```scala
 val arr01 = new Array[Int](4)
@@ -311,7 +311,7 @@ for (x <- arr01) {
 }
 ```
 
-#### object.Array.apply()
+### object.Array.apply()
 
 ```scala
 var arr02 = Array(1,3,"tom")
@@ -329,14 +329,14 @@ for (index <- 0 until arr02.length) {
 import scala.collection.mutable.ArrayBuffer
 ```
 
-#### 创建
+### 创建
 
 ```scala
 val arr2 = ArrayBuffer[Int]() //不带值，空的
 val arr01 = ArrayBuffer[Any](3,2,5) //带值
 ```
 
-#### 查询
+### 查询
 
 ```scala
 println(arr01(1)) //2
@@ -347,14 +347,14 @@ println(arr01.length) //3
 println(arr01.hashcode()) //110266112
 ```
 
-#### 添加 append
+### 添加 append
 
 ```scala
 arr01.append(90.0,13) //3,2,5,90.0,13
 println(arr01.hashcode()) //-70025354,可变
 ```
 
-#### 修改
+### 修改
 
 ```scala
 arr01(1) = 89
@@ -363,7 +363,7 @@ for (i <- arr01) {
 }
 ```
 
-#### 删除 remove
+### 删除 remove
 
 ```scala
 arr01.remove(0)
@@ -382,7 +382,7 @@ println(arr01.length)
 import scala.collection.mutable.Map
 ```
 
-#### 创建
+### 创建
 
 ```scala
 // 默认map是不可变的 immutable.Map，有序
@@ -398,7 +398,7 @@ val map3 = new scala.collection.mutable.HashMap[String,Int]
 val map4 = mutable.Map(("Alice",10),("Bob",20),("Kotlin","北京"))
 ```
 
-#### 取数
+### 取数
 
 ```scala
 // key不存在时，会抛出异常
@@ -427,7 +427,7 @@ println(map4.getOrElse("A","default_value")) //default_value
 
 ```
 
-#### 更新
+### 更新
 
 ```scala
 map4("AA") = 20
@@ -437,7 +437,7 @@ map4 -= ("AA") //key不存在不会报错
 map4 -= ("A","B")
 ```
 
-#### 遍历
+### 遍历
 
 ```scala
 val map6 = mutable.Map(("A",1),("B","beijing"),("C",3))
@@ -453,7 +453,7 @@ for (v <- map6) println(v + "key=" + v._1 + ", val=" + v._2) //(A,1) key=A, val=
 
 # 5. Map映射操作：集合元素映射处理
 
-#### 传统方法
+### 传统方法
 
 ```scala
 val list1 = List(3,5,7)
@@ -464,7 +464,7 @@ for (item <- list1) {
 println(list2) //List(6,10,14)
 ```
 
-#### 高阶函数，函数的函数
+### 高阶函数，函数的函数
 
 ```scala
 // f(n1)，输入是Double，输出是Double。test是高阶函数
@@ -488,7 +488,7 @@ def sayOk() = {
 test2(sayOk) //sayOKKKK
 ```
 
-#### Map
+### Map
 
 ```scala
 val list1 = List(3,5,7)
