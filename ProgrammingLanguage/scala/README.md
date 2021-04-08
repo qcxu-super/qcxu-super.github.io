@@ -549,3 +549,37 @@ val res = oper match {
 }
 println(res) //20
 ```
+
+
+# 7. sql scala
+
+
+
+# 8. featlib scala
+
+```scala
+// FileName: Htl...Op
+
+package ...
+import ...
+
+@identity(name = "htl_..._op")
+cladd Htl...Op extends Operator1[inputDataType,outputDataType] {
+    override def name(): String = "htl_..._op"
+    override def safe(): Boolean = true
+    
+    /* 函数外部有args输入
+    private var names: Array[String] = Array[String]()
+    override def init(args:funcInputDataType):funcOutputDataType{
+        
+    }
+    */
+    
+    // 外部没有args输入
+    override def init(arg: Map[String, Any]): Boolean = true
+    
+    override def process(ctx: Ctx, input: inputDataType): {
+        
+    }
+}
+```

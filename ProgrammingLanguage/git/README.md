@@ -17,3 +17,10 @@ vim id_rsa.pub
 打开 git --> Settings --> SSH Keys --> 把上面的内容复制过来 --> Add key --> 正常 git clone --> Done
 
 
+# 2. config
+
+```
+git config --list
+git config --global user.name "bryan sun"
+git config --global user.email "hitsjt@gmail.com"
+```
