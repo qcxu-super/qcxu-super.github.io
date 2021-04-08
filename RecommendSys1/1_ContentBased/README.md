@@ -58,19 +58,15 @@
 - 张三的电影平均分：(4+5+3)/3=4
 - 对张三来说，`Adventure`类型电影比总体平均分高出多少：
 
-```math
-\frac{1}{n} \sum_{i=1}^n{(x_i-avg)} = \frac{(4-4)+(5-4)}{2} = 0.5
-```
+![image](https://gitee.com/journey7878/img-bed/raw/master/RecommendSys1/picContent2.png)
 
 根据上面的逻辑，就可以算出，用户对所有电影类型的偏好，[0.5,...]
 
 #### 3. 计算用户与每部电影的距离
 
-```math
-cos(U,I) = \frac{\sum{U_a \times I_a}}{\sqrt{\sum{U_a^2}} \times \sqrt{\sum{I_a^2}}}
-```
+![image](https://gitee.com/journey7878/img-bed/raw/master/RecommendSys1/picContent3.png)
 
 其中，
 
-- ```$ U_a $```：用户对电影类型a的偏好，即：用户的偏好信息矩阵
-- ```$ I_a $```：电影是否属于类型a，即：物品的特征信息矩阵
+- `U_a`：用户对电影类型a的偏好，即：用户的偏好信息矩阵
+- `I_a`：电影是否属于类型a，即：物品的特征信息矩阵
