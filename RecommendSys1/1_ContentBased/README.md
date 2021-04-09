@@ -56,9 +56,11 @@
 从上面用户对电影的评分中可以看出，张三更喜欢`movie1`和`movie2`。假设`movie1`和`movie2`都是`Adventure`类型的电影，那怎么衡量：张三对`Adventure`类型的偏好呢？
 
 - 张三的电影平均分：(4+5+3)/3=4
-- 对张三来说，`Adventure`类型电影比总体平均分高出多少：
+- 对张三来说，`Adventure`类型电影比总体平均高出多少分：
 
 ![image](https://gitee.com/journey7878/img-bed/raw/master/RecommendSys1/picContent2.png)
+
+
 
 根据上面的逻辑，就可以算出，用户对所有电影类型的偏好，[0.5,...]
 
@@ -70,3 +72,14 @@
 
 - `U_a`：用户对电影类型a的偏好，即：用户的偏好信息矩阵
 - `I_a`：电影是否属于类型a，即：物品的特征信息矩阵
+
+
+#### 附：公式
+
+[latex](https://latex.codecogs.com/)
+
+```math
+\frac{1}{n} \sum_{i=1}^n{(x_i-avg)} = \frac{(4-4)+(5-4)}{2} = 0.5
+
+cos(U,I) = \frac{\sum{U_a \times I_a}}{\sqrt{\sum{U_a^2}} \times \sqrt{\sum{I_a^2}}}
+```
