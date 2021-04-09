@@ -83,3 +83,7 @@
 
 cos(U,I) = \frac{\sum{U_a \times I_a}}{\sqrt{\sum{U_a^2}} \times \sqrt{\sum{I_a^2}}}
 ```
+
+# 3. 实例
+
+[基于内容推荐的电影推荐系统](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/RecommendSys1/1_ContentBased/recMovieLens.py)
