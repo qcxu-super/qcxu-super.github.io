@@ -64,3 +64,23 @@
 
 # 5. [二叉树与图](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/5_TreeAndGraph)
 
+
+
+
+# 9. [动态规划](https://github.com/qcxu-super/qcxu-super.github.io/tree/master/Leetcode/9_DynamicProgramming)
+
+- 例1 [70爬楼梯(easy)](https://leetcode-cn.com/problems/climbing-stairs/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/70_climbingStairs.cpp)
+
+- 例2 [198打家劫舍(median)](https://leetcode-cn.com/problems/house-robber/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/198_houseRobber.cpp)
+
+- 例3 [53最大子序和(easy)](https://leetcode-cn.com/problems/maximum-subarray/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/53_maximumSubarray.cpp)
+
+- 例4 [322零钱兑换(median)](https://leetcode-cn.com/problems/coin-change/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/322_CoinChange.cpp)
+
+- 例5 [120三角形最小路径和(median)](https://leetcode-cn.com/problems/triangle/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/120_Triangle.cpp)
+
+- 例6 [300最长递增子序列(hard)](https://leetcode-cn.com/problems/longest-increasing-subsequence/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/300_LongestIncreasingSubsequence.cpp)
+
+- 例7 [64最小路径和(median)](https://leetcode-cn.com/problems/minimum-path-sum/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/64_MinimumPathSum.cpp)
+
+- 例8 [174地下城游戏(hard)](https://leetcode-cn.com/problems/dungeon-game/) | [solution](https://github.com/qcxu-super/qcxu-super.github.io/blob/master/Leetcode/9_DynamicProgramming/174_DungeonGame.cpp)

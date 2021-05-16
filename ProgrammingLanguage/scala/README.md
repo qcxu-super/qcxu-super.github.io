@@ -451,6 +451,47 @@ for (v <- map6.values) println(v) //1,3,beijing
 for (v <- map6) println(v + "key=" + v._1 + ", val=" + v._2) //(A,1) key=A, val=1 ,....
 ```
 
+
+## 4.4 Array 和 Map
+
+- Array 转 Map
+
+```scala
+val value_index_map = new mutable.HashMap[String, Int]()
+arr.indices.map(idx => {
+    value_index_map += (arr(idx) -> idx)
+})
+```
+
+- Array通常经过Map拿到index，遍历的时候能同时知道index
+
+```sala
+val bkt: Array[Boolean] = Array.fill[Boolean](4)(false)
+val bkt2 = bkt.indices.map(idx => {
+    bkt(idx) -> idx
+}).toArray
+
+bkt2 foreach (bt => {
+    val value = bt._1
+    val idx = bt._2
+    ...
+}
+```
+
+## 4.5 Java List
+
+- scala和java是同一体系的东西，所以经常会联写
+
+```scala
+import scala.collection.JavaConverters._
+
+// seq: java.util.List[Int]
+
+for (item <- seq.asScala) {
+    ...
+}
+```
+
 # 5. Map映射操作：集合元素映射处理
 
 ### 1. 传统方法
