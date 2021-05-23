@@ -20,18 +20,18 @@ class DataProcessing:
 
     def process_user_data(self, file='../data/ml-1m/users.dat'):
         fp = pd.read_table(file, sep='::', engine='python', names=['UserID','Gender','Age','Occupation','Zip-code'])
-        fp.to_csv('../data/ml-1m/use/users.csv', index=False)
+        fp.to_csv('../data/ml-1m/users.csv', index=False)
 
     def process_rating_data(self, file='../data/ml-1m/ratings.dat'):
         fp = pd.read_table(file, sep='::', engine='python', names=['UserID','MovieID','Rating','TimeStamp'])
-        fp.to_csv('../data/ml-1m/use/ratings.csv', index=False)
+        fp.to_csv('../data/ml-1m/ratings.csv', index=False)
 
     def process_movies_data(self, file='../data/ml-1m/movies.dat'):
         fp = pd.read_table(file, sep='::', engine='python', names=['MovieID','Title','Genres'])
-        fp.to_csv('../data/ml-1m/use/movies.csv', index=False)
+        fp.to_csv('../data/ml-1m/movies.csv', index=False)
 
     ## 计算物品的特征信息矩阵。各物品都属于哪些类别
-    def prepare_item_profile(self, file='../data/ml-1m/use/movies.csv'):
+    def prepare_item_profile(self, file='../data/ml-1m/movies.csv'):
         items = pd.read_csv(file)
         item_ids = set(items['MovieID'].values) # all items
 
@@ -50,12 +50,12 @@ class DataProcessing:
             for genre in self.item_dict[item]: # value: [genres]
                 index = self.genres_all_list.index(genre)
                 self.item_matrix[str(item)][index] = 1
-        json.dump(self.item_matrix, open('../data/ml-1m/use/item_profile.json','w'))
+        json.dump(self.item_matrix, open('../data/ml-1m/item_profile.json','w'))
 
-        print('Success. Item Matrix. Save to path {}'.format('../data/ml-1m/use/item_profile.json'))
+        print('Success. Item Matrix. Save to path {}'.format('../data/ml-1m/item_profile.json'))
 
     ## 计算用户的偏好矩阵。用户对各类别的偏好
-    def prepare_user_profile(self, file='../data/ml-1m/use/ratings.csv'):
+    def prepare_user_profile(self, file='../data/ml-1m/ratings.csv'):
         users = pd.read_csv(file)
         user_ids = set(users['UserID'].values)
 
@@ -85,20 +85,20 @@ class DataProcessing:
                     self.user_matrix[user].append(0.0)
                 else:
                     self.user_matrix[user].append(score_all/score_len)
-        json.dump(self.user_matrix, open('../data/ml-1m/use/user_profile.json','w'))
-        print('Success. User Matrix. Save to path {}'.format('../data/ml-1m/use/user_profile.json'))
+        json.dump(self.user_matrix, open('../data/ml-1m/user_profile.json','w'))
+        print('Success. User Matrix. Save to path {}'.format('../data/ml-1m/user_profile.json'))
 
 class CBRecommend:
     ## topK推荐。加载物品的特征信息矩阵，用户的偏好矩阵
     def __init__(self, k):
         self.k = k
-        self.item_profile = json.load(open('../data/ml-1m/use/item_profile.json','r'))
-        self.user_profile = json.load(open('../data/ml-1m/use/user_profile.json','r'))
+        self.item_profile = json.load(open('../data/ml-1m/item_profile.json','r'))
+        self.user_profile = json.load(open('../data/ml-1m/user_profile.json','r'))
 
     ## 获取用户未进行评分的item列表
     def get_none_score_item(self, user):
-        items = pd.read_csv('../data/ml-1m/use/movies.csv')['MovieID'].values
-        data = pd.read_csv('../data/ml-1m/use/ratings.csv')
+        items = pd.read_csv('../data/ml-1m/movies.csv')['MovieID'].values
+        data = pd.read_csv('../data/ml-1m/ratings.csv')
         have_score_items = data.loc[data['UserID']==user, 'MovieID'].values
         none_score_items = set(items)-set(have_score_items)
         return none_score_items
@@ -125,10 +125,10 @@ class CBRecommend:
     ## 评估
     def evaluate(self):
         evas = []
-        data = pd.read_csv('../data/ml-1m/use/ratings.csv')
+        data = pd.read_csv('../data/ml-1m/ratings.csv')
         for user in random.sample([one for one in range(1,6040)],20): # random sample 20 users
             have_score_items = data.loc[data['UserID']==user,'MovieID'].values
-            items = pd.read_csv('../data/ml-1m/use/movies.csv')['MovieID'].values
+            items = pd.read_csv('../data/ml-1m/movies.csv')['MovieID'].values
 
             user_result = {} # {item1:score1, item2:score2, ...}
             for item in items:
